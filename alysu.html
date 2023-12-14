@@ -116,10 +116,7 @@
     </div>
 
     <script>
-        function compra(){
-
-        }
-        function addEntry() {
+         function addEntry() {
             var title = document.getElementById('movieTitle').value;
             var ticketTypeElement = document.getElementById('ticketType');
             var ticketType = ticketTypeElement.options[ticketTypeElement.selectedIndex].text;
@@ -134,27 +131,21 @@
                 var cell3 = newRow.insertCell(2);
                 var cell4 = newRow.insertCell(3);
 
-
                 cell1.innerHTML = title;
                 cell2.innerHTML = ticketType;
                 cell3.innerHTML = 'R$' + price;
-                
-                var deleteButton = document.createElement('button');
-                deleteButton.setAttribute('type', 'button');
-                deleteButton.setAttribute('onclick', 'deleteRow(this)');
-                deleteButton.textContent = 'Excluir';
-                cell4.appendChild(deleteButton);
+                cell4.innerHTML = '<button type="button" onclick="deleteRow(this)">Excluir</button>' +
+                                  '<button type="button" onclick="editRow(this)">Editar</button>';
 
-                var editButton = document.createElement('button');
-                editButton.setAttribute('type', 'button');
-                editButton.setAttribute('onclick', 'editRow(this)');
-                editButton.textContent = 'Editar';
-                cell4.appendChild(editButton);
-                
+                                  
+                document.getElementById('movieTitle').value = '';
+                document.getElementById('ticketType').value = 'meia';
+            
             } else {
                 alert('Por favor, preencha todos os campos.');
             }
         }
+
         function editRow(button) {
             var row = button.parentNode.parentNode;
             var title = row.cells[0].innerHTML;
