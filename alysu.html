@@ -8,8 +8,14 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-        }
+            background: conic-gradient( #8AD6F0 , #4EC5D1, #02B8B8, #2897B1 , #30779F , #6582B8, #8AD6F0);
 
+        }
+        #anemic{
+            padding-left: 40%;
+            padding-top: 5%;
+            padding-bottom: 10%;
+        }
         .container {
             padding: 20px;
             border-radius: 10px;
@@ -76,10 +82,10 @@
     </style>
 </head>
 <body>
+        <img id="anemic" src="AmeniC.png" width="250" height="100"> 
 
     <div class="container">
-        <img src="Capturar.PNG" width="500" height="300">
-
+        
         <form id="crudForm">
             <label for="movieTitle">Título do Filme:</label>
             <input type="text" id="movieTitle" required>
@@ -110,6 +116,9 @@
     </div>
 
     <script>
+        function compra(){
+
+        }
         function addEntry() {
             var title = document.getElementById('movieTitle').value;
             var ticketTypeElement = document.getElementById('ticketType');
@@ -125,13 +134,36 @@
                 var cell3 = newRow.insertCell(2);
                 var cell4 = newRow.insertCell(3);
 
+
                 cell1.innerHTML = title;
                 cell2.innerHTML = ticketType;
                 cell3.innerHTML = 'R$' + price;
-                cell4.innerHTML = '<button type="button" onclick="deleteRow(this)">Excluir</button>';
+                
+                var deleteButton = document.createElement('button');
+                deleteButton.setAttribute('type', 'button');
+                deleteButton.setAttribute('onclick', 'deleteRow(this)');
+                deleteButton.textContent = 'Excluir';
+                cell4.appendChild(deleteButton);
+
+                var editButton = document.createElement('button');
+                editButton.setAttribute('type', 'button');
+                editButton.setAttribute('onclick', 'editRow(this)');
+                editButton.textContent = 'Editar';
+                cell4.appendChild(editButton);
+                
             } else {
                 alert('Por favor, preencha todos os campos.');
             }
+        }
+        function editRow(button) {
+            var row = button.parentNode.parentNode;
+            var title = row.cells[0].innerHTML;
+            var ticketType = row.cells[1].innerHTML;
+
+            document.getElementById('movieTitle').value = title;
+            document.getElementById('ticketType').value = ticketType === 'Meia Entrada' ? 'meia' : 'inteira';
+
+            row.parentNode.removeChild(row);
         }
 
         function deleteRow(button) {
