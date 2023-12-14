@@ -86,8 +86,8 @@
 
             <label for="ticketType">Tipo de Ingresso:</label>
             <select id="ticketType" required>
-                <option value="meia">Meia Entrada (R$12)</option>
-                <option value="inteira">Inteira (R$24)</option>
+                <option value="meia">Meia Entrada</option>
+                <option value="inteira">Inteira</option>
             </select>
 
             <button type="button" onclick="addEntry()">Adicionar</button>
@@ -114,7 +114,7 @@
             var title = document.getElementById('movieTitle').value;
             var ticketTypeElement = document.getElementById('ticketType');
             var ticketType = ticketTypeElement.options[ticketTypeElement.selectedIndex].text;
-            var price = ticketType === 'Meia Entrada (R$12)' ? 12 : 24;
+            var price = ticketType === 'Meia Entrada' ? 12 : 24;
 
             if (title) {
                 var table = document.getElementById('salesTable').getElementsByTagName('tbody')[0];
@@ -127,7 +127,7 @@
 
                 cell1.innerHTML = title;
                 cell2.innerHTML = ticketType;
-                cell3.innerHTML = '$' + price;
+                cell3.innerHTML = 'R$' + price;
                 cell4.innerHTML = '<button type="button" onclick="deleteRow(this)">Excluir</button>';
             } else {
                 alert('Por favor, preencha todos os campos.');
